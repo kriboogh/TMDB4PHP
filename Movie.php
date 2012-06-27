@@ -54,7 +54,6 @@ class Movie extends Asset {
    * @link http://help.themoviedb.org/kb/api/movie-keywords
    */
   public function keywords(){
-    http://help.themoviedb.org/kb/api/movie-release-info
     $db = TMDB::getInstance();
     $info = $db->info(self::$type, $this->id, 'keywords');
     return $info;
@@ -74,7 +73,7 @@ class Movie extends Asset {
    */
   public function trailers($language=null){
     $db = TMDB::getInstance();
-    $info = $db->info(self::$type, $this->id, 'trailers');
+    $info = $db->info(self::$type, $this->id, 'trailers', array('language'=>$language));
     return $info;
   }
 
