@@ -13,7 +13,12 @@ class Movie extends Asset {
    */
   public function alternative_titles($country=''){
     $db = TMDB::getInstance();
-    $info = $db->info(self::$type, $this->id, 'alternative_titles', array('language'=>$language));
+    $filterArray = array();
+    if (!empty($country))
+    {
+      $filterArray['country'] = $country;
+    }
+    $info = $db->info(self::$type, $this->id, 'alternative_titles', $filterArray);
     return $info;
   }
 
@@ -24,11 +29,9 @@ class Movie extends Asset {
     $casts = array();
     $db = TMDB::getInstance();
     $info = $db->info(self::$type, $this->id, 'casts');
-    foreach($info as $group => $persons){
-      foreach($persons as $index => $person){
-        $casts[$group][$person->id] = new Person($person);
-      }
-    }
+    //API only returns cast and crew infomation currently
+    $casts['cast'] = $info->cast;
+    $casts['crew'] = $info->crew;
     return $casts;
   }
 

@@ -21,6 +21,8 @@ class TMDB {
   public $error;
   public $response; // last response result;
 
+    public $debug = false;
+
   /**
    * SINGLETON (with enheritance support)
    */
@@ -148,8 +150,13 @@ class TMDB {
           'Content-type: application/json'
         ),
       ));
-
+      if ($this->debug){
+        error_log("DEBUG: Calling URL: {$url}");
+      }
       if(!empty($data) && is_array($data)){
+        if ($this->debug){
+          error_log("DEBUG: POSTDATA: " . var_export($data,true));
+        }
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
       }
 
