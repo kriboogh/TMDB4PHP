@@ -29,11 +29,9 @@ class Movie extends Asset {
     $casts = array();
     $db = TMDB::getInstance();
     $info = $db->info(self::$type, $this->id, 'casts');
-    foreach($info as $group => $persons){
-      foreach($persons as $index => $person){
-        $casts[$group][$person->id] = new Person($person);
-      }
-    }
+    //API only returns cast and crew infomation currently
+    $casts['cast'] = $info->cast;
+    $casts['crew'] = $info->crew;
     return $casts;
   }
 
