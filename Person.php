@@ -36,9 +36,8 @@ class Person extends Asset {
   /**
    * Get the profile picture
    */
-  public function profile($size) {
-    $db = TMDB::getInstance();
-    return $db->image_url('profile', $size, $this->profile_path);
+  public function profile($size=false) {
+    return $this->image('profile', $size);
   }
 
 }

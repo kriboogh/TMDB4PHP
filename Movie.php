@@ -135,8 +135,11 @@ class Movie extends Asset {
   /**
    * Get the backdrops
    */
+  public function backdrop($size=false, $random=false, $language=null){
+    return $this->image('backdrop', $size, $random, $language);
+  }
+
   public function backdrops($size, $language=null){
-    $db = TMDB::getInstance();
     $images = $this->images($language, $size);
     return $images->backdrops;
   }
@@ -144,8 +147,11 @@ class Movie extends Asset {
   /**
    * Get the posters
    */
+  public function poster($size=false, $random=false, $language=null){
+    return $this->image('poster', $size, $random, $language);
+  }
+
   public function posters($size, $language=null){
-    $db = TMDB::getInstance();
     $images = $this->images($language, $size);
     return $images->posters;
   }

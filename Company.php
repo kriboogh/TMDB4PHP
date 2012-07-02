@@ -23,8 +23,7 @@ class Company extends Asset {
   /**
    * Get the logo pictures
    */
-  public function logo($size) {
-    $db = TMDB::getInstance();
-    return $db->image_url('logo', $size, $this->logo_path);
+  public function logo($size=false) {
+    return $this->image('logo', $size);
   }
 }
