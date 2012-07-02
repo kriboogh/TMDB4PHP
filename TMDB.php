@@ -133,7 +133,6 @@ class TMDB {
 
     $params = $defaults + $params;
 
-    // Take out empty string parameters
     foreach($params as $key=>$value){
       if($value==''){
         unset($params[$key]);
