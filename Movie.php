@@ -56,7 +56,7 @@ class Movie extends Asset {
       foreach($images as $index => $data) {
         if(is_null($language) || in_array($data->iso_639_1, $languages)) {
           if($size){
-            $info->{$type}[$index]->file_path = $db->image_url($type, $size, $data->file_path);
+            $info->{$type}[$index]->file_path = $db->image_url(substr($type, 0, strlen($type)-1), $size, $data->file_path);
           }
         } else {
           unset($info->{$type}[$index]);
