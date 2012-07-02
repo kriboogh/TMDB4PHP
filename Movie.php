@@ -13,7 +13,12 @@ class Movie extends Asset {
    */
   public function alternative_titles($country=''){
     $db = TMDB::getInstance();
-    $info = $db->info(self::$type, $this->id, 'alternative_titles', array('language'=>$language));
+    $filterArray = array();
+    if (!empty($country))
+    {
+      $filterArray['country'] = $country;
+    }
+    $info = $db->info(self::$type, $this->id, 'alternative_titles', $filterArray);
     return $info;
   }
 
