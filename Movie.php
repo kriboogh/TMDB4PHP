@@ -35,17 +35,33 @@ class Movie extends Asset {
 
   /**
    * @link http://help.themoviedb.org/kb/api/movie-images
+   * @param language string, you can seperate multi language selects by using a ;
+   *        the API currently does not include null or empty language values in the result
+   *        so if you want all images in english including the ones that have null or empty language in database,
+   *        you can use 'null;;en' as a language parameter value.
    */
-  public function images($language='', $size=false){
+  public function images($language=null, $size=false){
+
+    if(!is_null($language)){
+      $languages = explode(';',$language);
+      if($language != $languages[0]){
+        $language = '';
+      }
+    }
+
     $db = TMDB::getInstance();
     $info = $db->info(self::$type, $this->id, 'images', array('language'=>$language));
-    if($size) {
-        foreach($info->backdrops as $index => $data) {
-          $info->backdrops[$index]->file_path = $db->image_url('backdrop', $size, $data->file_path);
+    foreach($info as $type => $images){
+      if(!is_array($images)) continue;
+      foreach($images as $index => $data) {
+        if(is_null($language) || in_array($data->iso_639_1, $languages)) {
+          if($size){
+            $info->{$type}[$index]->file_path = $db->image_url($type, $size, $data->file_path);
+          }
+        } else {
+          unset($info->{$type}[$index]);
         }
-        foreach($info->posters as $index => $data) {
-          $info->posters[$index]->file_path = $db->image_url('poster', $size, $data->file_path);
-        }
+      }
     }
 
     return $info;
