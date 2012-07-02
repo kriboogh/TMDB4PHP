@@ -13,7 +13,7 @@ class Movie extends Asset {
    */
   public function alternative_titles($country=''){
     $db = TMDB::getInstance();
-    $info = $db->info(self::$type, $this->id, 'alternative_titles', array('language'=>$language));
+    $info = $db->info(self::$type, $this->id, 'alternative_titles', array('country'=>$country));
     return $info;
   }
 
@@ -39,7 +39,6 @@ class Movie extends Asset {
   public function images($language='', $size=false){
     $db = TMDB::getInstance();
     $info = $db->info(self::$type, $this->id, 'images', array('language'=>$language));
-        dsm($info);
     if($size) {
         foreach($info->backdrops as $index => $data) {
           $info->backdrops[$index]->file_path = $db->image_url('backdrop', $size, $data->file_path);
