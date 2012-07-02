@@ -131,6 +131,13 @@ class TMDB {
 
     $params = $defaults + $params;
 
+    // Take out empty string parameters
+    foreach($params as $key=>$value){
+      if($value==''){
+        unset($params[$key]);
+      }
+    }
+
     $query = http_build_query($params);
 
     $url =  $this->api_url . '/' . $this->api_version . '/' . $method . '?' . $query;
