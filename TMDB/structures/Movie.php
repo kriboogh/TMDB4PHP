@@ -1,4 +1,5 @@
 <?php
+namespace TMDB\structures;
 /**
  * Helper class to hold the Movie Info API calls
  *
@@ -12,7 +13,7 @@ class Movie extends Asset {
    * @link http://help.themoviedb.org/kb/api/movie-alternative-titles
    */
   public function alternative_titles($country=''){
-    $db = TMDB::getInstance();
+    $db = \TMDB\Client::getInstance();
     $info = $db->info(self::$type, $this->id, 'alternative_titles', array('country'=>$country));
     return $info;
   }
@@ -22,7 +23,7 @@ class Movie extends Asset {
    */
   public function casts(){
     $casts = array();
-    $db = TMDB::getInstance();
+    $db = \TMDB\Client::getInstance();
     $info = $db->info(self::$type, $this->id, 'casts');
     foreach($info as $group => $persons){
       if(!is_array($persons)) continue;
@@ -49,7 +50,7 @@ class Movie extends Asset {
       }
     }
 
-    $db = TMDB::getInstance();
+    $db = \TMDB\Client::getInstance();
     $info = $db->info(self::$type, $this->id, 'images', array('language'=>$language));
     foreach($info as $type => $images){
       if(!is_array($images)) continue;
@@ -71,7 +72,7 @@ class Movie extends Asset {
    * @link http://help.themoviedb.org/kb/api/movie-keywords
    */
   public function keywords(){
-    $db = TMDB::getInstance();
+    $db = \TMDB\Client::getInstance();
     $info = $db->info(self::$type, $this->id, 'keywords');
     return $info;
   }
@@ -80,7 +81,7 @@ class Movie extends Asset {
    * @link http://help.themoviedb.org/kb/api/movie-release-info
    */
   public function releases(){
-    $db = TMDB::getInstance();
+    $db = \TMDB\Client::getInstance();
     $info = $db->info(self::$type, $this->id, 'releases');
     return $info;
   }
@@ -89,7 +90,7 @@ class Movie extends Asset {
    * @link http://help.themoviedb.org/kb/api/movie-trailers
    */
   public function trailers($language=null){
-    $db = TMDB::getInstance();
+    $db = \TMDB\Client::getInstance();
     $info = $db->info(self::$type, $this->id, 'trailers', array('language'=>$language));
     return $info;
   }
@@ -98,7 +99,7 @@ class Movie extends Asset {
    * @link http://help.themoviedb.org/kb/api/movie-translations
    */
   public function translations(){
-    $db = TMDB::getInstance();
+    $db = \TMDB\Client::getInstance();
     $info = $db->info(self::$type, $this->id, 'translations');
     return $info;
   }
@@ -107,7 +108,7 @@ class Movie extends Asset {
    * @link http://help.themoviedb.org/kb/api/movie-similar-movies
    */
   public function similar_movies($language=null, $page=1){
-    $db = TMDB::getInstance();
+    $db = \TMDB\Client::getInstance();
     $movies = array();
     $info = $db->info(self::$type, $this->id, 'similar_movies', array('language'=>$language, 'page'=>$page));
     foreach($info->results as $index => $movie){

@@ -1,12 +1,6 @@
 <?php
-require_once(__DIR__ . '/Asset.php');
-require_once(__DIR__ . '/Movie.php');
-require_once(__DIR__ . '/Person.php');
-require_once(__DIR__ . '/Collection.php');
-require_once(__DIR__ . '/Company.php');
-require_once(__DIR__ . '/Genre.php');
-
-class TMDB {
+namespace TMDB;
+class Client {
 
   protected $api_url = "http://api.themoviedb.org";
   protected $api_version = "3";

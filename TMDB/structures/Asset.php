@@ -1,4 +1,5 @@
 <?php
+namespace TMDB\structures;
 /**
  * Base class for all API helper classes
  */
@@ -8,7 +9,7 @@ class Asset {
 
   public function __construct($data){
     if(is_numeric($data)){
-      $db = TMDB::getInstance();
+      $db = \TMDB\Client::getInstance();
       $data = $db->info(self::$type, $data);
     }
     foreach($data as $key => $value){
@@ -39,7 +40,7 @@ class Asset {
 
     if(isset($this->{$path_key})){
       if($size){
-        $db = TMDB::getInstance();
+        $db = \TMDB\Client::getInstance();
         $image = $db->image_url($type, $size, $this->{$path_key});
       } else {
         $image = $this->{$path_key};

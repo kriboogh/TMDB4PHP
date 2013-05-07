@@ -1,5 +1,5 @@
 <?php
-
+namespace TMDB\structures;
 /**
  * Helper class to hold the Collection Info API calls
  *

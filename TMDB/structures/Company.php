@@ -1,5 +1,5 @@
 <?php
-
+namespace TMDB\structures;
 class Company extends Asset {
 
   public static $type = 'company';
@@ -8,7 +8,7 @@ class Company extends Asset {
    * @link http://help.themoviedb.org/kb/api/company-movies
    */
   public function movies($language=null, $page=1){
-    $db = TMDB::getInstance();
+    $db = \TMDB\Client::getInstance();
     $movies = array();
     $info = $db->info(self::$type, $this->id, 'movies', array('language'=>$language, 'page'=>$page));
     foreach($info->results as $index => $movie){

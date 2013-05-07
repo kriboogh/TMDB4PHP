@@ -1,5 +1,5 @@
 <?php
-
+namespace TMDB\structures;
 class Person extends Asset {
 
   public static $type = 'person';
@@ -8,7 +8,7 @@ class Person extends Asset {
    * @link http://help.themoviedb.org/kb/api/person-credits
    */
   public function credits($language=null){
-    $db = TMDB::getInstance();
+    $db = \TMDB\Client::getInstance();
     $info = $db->info(self::$type, $this->id, 'credits', array('language'=>$language));
     return $info;
   }
@@ -17,7 +17,7 @@ class Person extends Asset {
    * @link http://help.themoviedb.org/kb/api/person-images
    */
   public function images($size=false){
-    $db = TMDB::getInstance();
+    $db = \TMDB\Client::getInstance();
     $info = $db->info(self::$type, $this->id, 'images');
     foreach($info as $type => $images){
       if(!is_array($images)) continue;

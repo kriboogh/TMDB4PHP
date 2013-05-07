@@ -1,0 +1,7 @@
+<phpunit bootstrap="vendor/autoload.php">
+    <testsuites>
+        <testsuite name="TMDB">
+            <directory>tests/coverage</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>

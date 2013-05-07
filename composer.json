@@ -1,0 +1,22 @@
+{
+	"name": "mediadevils/tmdb-library",
+	"description": "PHP wrapper classes for TMDB (TheMovieDatabase) API v3.",
+	"authors": [
+		{
+			"name": "Justin Martin",
+			"email": "frozenfire@thefrozenfire.com"
+		}
+	],
+	"minimum-stability": "dev",
+	"require": {
+
+	},
+	"require-dev": {
+		"phpunit/phpunit": "3.7.*@stable"
+	},
+	"autoload": {
+		"psr-0": {
+			"TMDB": ""
+		}
+	}
+}
