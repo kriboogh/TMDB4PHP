@@ -16,11 +16,11 @@ class Client {
 	 */
 	protected static $instance;
 	final public static function getInstance($api_key = null) {
-		$class = static ::getClass();
-		if (!isset(static ::$instance[$class])) {
-			static ::$instance[$class] = new $class($api_key);
+		$class = static::getClass();
+		if (!isset(static::$instance[$class])) {
+			static::$instance[$class] = new $class($api_key);
 		}
-		return static ::$instance[$class];
+		return static::$instance[$class];
 	}
 	final public static function getClass() {
 		return get_called_class();
@@ -41,7 +41,7 @@ class Client {
 		$results = array();
 		$response = $this->send_request('search/' . $type, $params);
 		if (!$response->error) {
-			$asset_class = ucfirst($type); // NOTE: As long as we can map the methods to the class name, this works...
+			$asset_class = "\\TMDB\\structures\\".ucfirst($type); // NOTE: As long as we can map the methods to the class name, this works...
 			$results = array();
 			foreach ($response->data->results as $asset) {
 				if ($expand) {
