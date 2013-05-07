@@ -97,7 +97,7 @@ class Client {
 	 *  - error -> error code and message
 	 */
 	private function send_request($method, $params = array() , $data = array()) {
-		$response = new stdClass();
+		$response = new \stdClass();
 		$params = $this->params_merge($params);
 		$query = http_build_query($params);
 		$url = $this->api_url . '/' . $this->api_version . '/' . $method . '?' . $query;
