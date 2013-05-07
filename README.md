@@ -8,9 +8,9 @@ Calibrate (www.calibrate.be)
 
 Requirements:
 ------------
- * PHP 5.3+
- * Curl
- * TMDB Api-key
+* PHP 5.3+
+* Curl
+* TMDB Api-key
 
 Basic usage:
 -----------
