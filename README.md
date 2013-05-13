@@ -8,6 +8,7 @@ Calibrate (www.calibrate.be)
 
 Requirements:
 ------------
+
 * PHP 5.3+
 * Curl
 * TMDB Api-key
@@ -39,6 +40,7 @@ Assets
 ------
 
 Several objects are defined for the 'assets' TMDB uses. These include:
+
 * Movie
 * Person
 * Company
