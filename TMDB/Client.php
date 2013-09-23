@@ -79,7 +79,7 @@ class Client {
 		if ($method) {
 			$response = $this->send_request($type . '/' . $id . '/' . $method, $params);
 		} else {
-			$response = $this->send_request($type . '/' . $id);
+			$response = $this->send_request($type . '/' . $id, $params);
 		}
 		if (!$response->error) {
 			$result = $response->data;
