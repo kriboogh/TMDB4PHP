@@ -1,5 +1,5 @@
 {
-	"name": "mediadevils/tmdb-library",
+	"name": "breuls/tmdb-library",
 	"description": "PHP wrapper classes for TMDB (TheMovieDatabase) API v3.",
 	"authors": [
 		{
