@@ -44,6 +44,7 @@ class Client {
 			$asset_class = "\\TMDB\\structures\\".ucfirst($type); // NOTE: As long as we can map the methods to the class name, this works...
 			$results = array();
 			foreach ($response->data->results as $asset) {
+				if(!is_object($asset)) continue; // TMDB API occasionally includes null in the result array.
 				if ($expand) {
 					$info = $this->info($type, $asset->id);
 					if ($info) {
